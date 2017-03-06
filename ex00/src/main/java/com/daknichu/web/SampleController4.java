@@ -22,6 +22,6 @@ public class SampleController4 {
 	
 	@RequestMapping("/doF")
 	public void doF(String msg){
-		logger.info("doF called............." + msg);
+		logger.info("doF called.............11" + msg);
 	}
 }
