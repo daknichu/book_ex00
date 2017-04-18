@@ -26,7 +26,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void medify(BoardVO board) throws Exception {
+	public void modify(BoardVO board) throws Exception {
 		dao.update(board);
 	}
 
