@@ -3,6 +3,7 @@ package com.daknichu.persistence;
 import java.util.List;
 
 import com.daknichu.domain.BoardVO;
+import com.daknichu.domain.Criteria;
 
 public interface BoardDAO {
 
@@ -15,5 +16,9 @@ public interface BoardDAO {
 	public void delete(Integer bno) throws Exception;
 	
 	public List<BoardVO> listAll() throws Exception;
+	
+	public List<BoardVO> listPage(int page) throws Exception;
+	
+	public List<BoardVO> listCriteria(Criteria cri) throws Exception; 
 	
 }

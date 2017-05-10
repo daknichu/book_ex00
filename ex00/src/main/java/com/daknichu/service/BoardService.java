@@ -3,6 +3,7 @@ package com.daknichu.service;
 import java.util.List;
 
 import com.daknichu.domain.BoardVO;
+import com.daknichu.domain.Criteria;
 
 public interface BoardService {
 
@@ -16,4 +17,6 @@ public interface BoardService {
 	public void remove(Integer bno) throws Exception;
 	
 	public List<BoardVO> listAll() throws Exception;
+	
+	public List<BoardVO> listCriteria(Criteria cri) throws Exception;
 }

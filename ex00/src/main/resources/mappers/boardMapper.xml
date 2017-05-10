@@ -32,5 +32,25 @@
  		 ORDER BY bno desc, regdate desc
  	]]>
  	</select>
+ 	
+ 	<select id="listPage" resultType="com.daknichu.domain.BoardVO">
+ 	<![CDATA[
+ 		SELECT bno, title, content, writer, regdate, viewcnt 
+ 		  FROM tbl_board
+ 		 WHERE bno > 0
+ 		 ORDER BY bno desc, regdate desc
+ 		 LIMIT #{page}, 10
+ 	]]>
+ 	</select>
+ 	
+ 	<select id="listCriteria" resultType="com.daknichu.domain.BoardVO">
+ 	<![CDATA[
+ 		SELECT bno, title, content, writer, regdate, viewcnt 
+ 		  FROM tbl_board
+ 		 WHERE bno > 0
+ 		 ORDER BY bno desc, regdate desc
+ 		 LIMIT #{pageStart}, #{perPageNum}
+ 	]]>
+ 	</select>
  
  </mapper>

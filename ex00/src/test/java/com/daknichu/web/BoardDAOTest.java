@@ -1,19 +1,25 @@
 package com.daknichu.web;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.daknichu.domain.BoardVO;
+import com.daknichu.domain.Criteria;
 import com.daknichu.persistence.BoardDAO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/spring/**/*.xml"})
 public class BoardDAOTest {
-
+	
+	private static final Logger logger = LoggerFactory.getLogger(BoardDAOTest.class);
 	
 	@Inject
 	private BoardDAO dao;
@@ -23,8 +29,8 @@ public class BoardDAOTest {
 		
 		BoardVO board = new BoardVO();
 		board.setBno(1);
-		board.setTitle("»õ·Î¿î Á¦¸ñÀ» ³Ö½À´Ï´Ù.");
-		board.setContent("»õ·Î¿î ±ÛÀ» ³Ö½À´Ï´Ù.");
+		board.setTitle("ìƒˆë¡œìš´ ì œëª©ì„ ë„£ìŠµë‹ˆë‹¤.");
+		board.setContent("ìƒˆë¡œìš´ ê¸€ì„ ë„£ìŠµë‹ˆë‹¤.");
 		board.setWriter("daknichu");
 		dao.create(board);
 	}
@@ -40,14 +46,40 @@ public class BoardDAOTest {
 		
 		BoardVO board = new BoardVO();
 		board.setBno(1);
-		board.setTitle("¼öÁ¤µÈ Á¦¸ñ ÀÔ´Ï´Ù.");
-		board.setContent("¼öÁ¤µÈ ±Û ÀÔ´Ï´Ù.");
+		board.setTitle("ìˆ˜ì •ëœ ì œëª© ì…ë‹ˆë‹¤.");
+		board.setContent("ìˆ˜ì •ëœ ê¸€ ì…ë‹ˆë‹¤.");
 		dao.update(board);
 	}
 	
 	@Test
 	public void testDelete() throws Exception {
 		dao.delete(1);
+	}
+	
+	@Test
+	public void testListPage() throws Exception {
+		
+		int page = 3;
+		
+		List<BoardVO> list = dao.listPage(page);
+		
+		for (BoardVO boardVO : list) {
+			logger.info(boardVO.getBno() + ":" + boardVO.getTitle());
+		}
+	}
+	
+	@Test
+	public void testListCriteria() throws Exception {
+		
+		Criteria cri = new Criteria();
+		cri.setPage(2);
+		cri.setPerPageNum(20);
+		
+		List<BoardVO> list = dao.listCriteria(cri);
+		
+		for (BoardVO boardVO : list) {
+			logger.info(boardVO.getBno() + ":" + boardVO.getTitle());
+		}
 	}
 
 }
